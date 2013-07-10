@@ -33,13 +33,17 @@ function sendCountRequest() {
 		 
 		if (xmlhttp.status == 200) {				
 			var json = JSON.parse(xmlhttp.responseText);
-			debugger;
+			//debugger;
 			var unreaded = parseJson(json);
+			
 			updateBadge(unreaded);
+			updateIcon(true);
 		}else if(xmlhttp.status == 403) {
-			updateBadge('Login')
+			updateBadge('');
+			updateIcon(false);
 		} else {
-			updateBadge('Some error');
+			updateBadge('Error');
+			updateIcon(false);
 		}
 	};
 	
@@ -66,6 +70,18 @@ function parseJson(json) {
 
 function updateBadge(text) {
 	chrome.browserAction.setBadgeText({text: text.toString()});
+}
+
+/**
+ * 
+ * @param {type} icon - true цветная иконка, false черно-белая
+ */
+function updateIcon(icon) {
+	if(icon) {
+		chrome.browserAction.setIcon({path: 'icon-active.png'});
+	} else {
+		chrome.browserAction.setIcon({path: 'icon-inactive.png'});
+	}
 }
 
 
