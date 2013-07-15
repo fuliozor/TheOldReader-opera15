@@ -1,6 +1,14 @@
 var INTERVAL = 15 * 60 * 1000; //15 минут
 //var INTERVAL = 10000; //15 минут
 
+var dictionary;
+
+if(getLanguage() == 'ru') {
+	//debugger;
+	dictionary = new Rus();
+} else {
+	dictionary = new Eng();
+}
 
 function findOldTab(callback) {
 	chrome.tabs.query(
@@ -42,7 +50,7 @@ function sendCountRequest() {
 			updateBadge('');
 			updateIcon(false);
 		} else {
-			updateBadge('Error');
+			updateBadge(dictionary.error);
 			updateIcon(false);
 		}
 	};
@@ -89,4 +97,18 @@ function getCount() {
 	//debugger;
 	sendCountRequest();
 	var timer = setInterval(sendCountRequest, INTERVAL);
+}
+
+/**
+ * Возвращает язык который нужно использовать
+ * @returns {string}
+ */
+function getLanguage() {
+	var language = localStorage.getItem('language');
+	
+	if(!language) {
+		language = navigator.language;
+	}
+	
+	return language;
 }

@@ -4,9 +4,11 @@
 	"name": "The Old Reader extension",
 	"description": "This extension provides a toolbar icon to notify you about unread items in your The Old Reader account.",
 	"version": "1.0",
-	"background": {"scripts": ["functions.js", "background.js"]},
+	"background": {"scripts": ["dictionary.js", "functions.js", "background.js"]},
 
-	"permissions": ["tabs", "*://theoldreader.com/"],
+	"permissions": ["tabs", "*://theoldreader.com/", "self"],
+	
+	"options_page": "options.html",
 	
 	"icons": {
 		"16": "icon-16.png",
