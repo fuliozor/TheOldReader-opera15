@@ -12,7 +12,7 @@ function UI() {
  */
 function Proxy() {	
 	this.headers;
-	this.xmlhttp = new XMLHttpRequest();;
+	this.xmlhttp = new XMLHttpRequest();
 }
 
 /**
@@ -21,7 +21,7 @@ function Proxy() {
  * @returns {XMLHttpRequest}
  */
 Proxy.prototype.createRequest = function(url, callbackSuccess, callbackError) {
-	this.xmlhttp.open('POST', url, callback);
+	//this.xmlhttp.open('POST', url, true);
 	this.xmlhttp.onreadystatechange = function() {
 		if(this.xmlhttp.readyState == 4) {
 			if(this.xmlhttp.status == 200) {
@@ -33,11 +33,11 @@ Proxy.prototype.createRequest = function(url, callbackSuccess, callbackError) {
 		
 	};
 	
-	return this.xmlhttp.open('POST', url, callback);
+	return this.xmlhttp.open('POST', url, true);
 }
 
 Proxy.prototype.addHeader = function(name, value) {
-	
+	this.xmlhttp.setRequestHeader(name, value)
 }
 
 /**

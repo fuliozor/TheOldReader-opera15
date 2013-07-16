@@ -3,7 +3,7 @@ $(window).load(function () {
 	$('input').val(dictionary.save).click(function() {
 		var select = $('select :selected');
 		
-		saveOptions('language', select.val());
+		saveOption('language', select.val());
 	});
 });
 

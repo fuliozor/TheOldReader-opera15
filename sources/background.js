@@ -12,6 +12,8 @@ _gaq.push(['_setAccount', 'UA-20521762-3']);
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
 
+chrome.browserAction.setTitle({title:dictionary.title});
+
 getCount();
 
 chrome.browserAction.onClicked.addListener(function() {
